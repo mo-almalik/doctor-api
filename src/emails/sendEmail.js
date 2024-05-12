@@ -16,13 +16,13 @@ export const sendMail = async (options) => {
     
         // send mail with defined transport object
         const info = await transporter.sendMail({
-          from: `"عافية 👻" <${process.env.MAILER}>`, // sender address
+          from: `"عافية " <${process.env.MAILER}>`, // sender address
           to: options.email, // list of receivers
-          subject: "Hello ✔", // Subject line
+          subject: "تأكيد الايميل ✔", // Subject line
           text: "Hello world?", // plain text body
           html: options.html, // html body
         });
       
-        console.log("Message sent: %s", info.messageId);
+       
     
 }

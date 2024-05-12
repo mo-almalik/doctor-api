@@ -4,10 +4,11 @@ import { validate } from "../../middlewares/validation.middleware.js";
 import { Login, Registrt, assertUniqueEmail } from "./auth.middlewares.js";
 import Doctor from "../../models/doctor.js";
 import User from "../../models/user.js";
-import { DoctorRegister } from "./auth.controller.js";
+import { DoctorRegister, verify } from "./auth.controller.js";
 import { uploadSingleFile } from "../../middlewares/upload.middleware.js";
 
 const router = Router()
+router.get("/verify/:token", verify)
 router.post("/doctor/register",uploadSingleFile('profilePhoto'),assertUniqueEmail(Doctor),DoctorRegister)
 
 router.post("/register",validate(registerSchema),assertUniqueEmail(User) ,Registrt(User))
