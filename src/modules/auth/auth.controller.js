@@ -38,7 +38,7 @@ export const DoctorRegister =  catchError(async (req,res)=>{
             })
               
 			let token = jwt.sign({ email: req.body.email }, 'c11bc2262de686c' ,{expiresIn :'2h'})
-			// sendMail({email   ,  html: emailHtml(token ,username)})
+			sendMail({email   ,  html: emailHtml(token ,username)})
 			 res.json({ message:'success'})
 		
 })
