@@ -6,7 +6,7 @@ import Appointment from "../../../models/appointment.js";
 const addreview = catchError(async(req,res)=>{
     const {doctorId} = req.params
    const {id} = req.user
-   const checkUser = await Appointment.findOne({userId:id})
+   const checkUser = await Appointment.findOne({userId:id ,status:'confirmed'})
 
    if(!checkUser) return res.status(401).json({message : 'انت لاتمتلك حجز مع الدكتور ولايمكنك التقيم'})
 

@@ -4,11 +4,12 @@ import { AppError, catchError } from "../../../utils/error.handler.js";
 
 
 const updateUser = catchError(async(req,res)=>{
-    const {username,
+    const {
+      username,
         email,
         gender,
         phone,
-        DOB} = req.body
+        } = req.body
         const {id}= req.user
 
         const user = await User.findById(id)
@@ -17,8 +18,7 @@ const updateUser = catchError(async(req,res)=>{
             username,
             email,
             gender,
-            phone,
-            DOB
+            phone
     })
         res.json({message :"updated success"})
 })
@@ -56,8 +56,9 @@ const getMyAppointment = catchError(async(req,res)=>{
    const {id} = req.params
  const data = await Appointment.findById(id)
  if(userId === data.userId.toString()) {
-    await Appointment.findByIdAndUpdate(id,{status:"canceled"})
-    res.json({message :"canceled appointment success"})
+   await Appointment.findByIdAndUpdate(id,{status:"canceled"},{new:true})
+  
+   return res.json({message :"canceled appointment success"})
  } throw new AppError('not found !' , 404)
     
     
@@ -65,7 +66,7 @@ const getMyAppointment = catchError(async(req,res)=>{
  const userInfo = catchError(async(req,res)=>{
     const {id} = req.user
 
-  const data = await User.findById(id).select('-password -role')
+  const data = await User.findById(id)
   if(!data) throw new AppError("not found", 404)
   res.json({data})
 })

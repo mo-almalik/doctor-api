@@ -7,7 +7,7 @@ export const updateSchema = Joi.object({
             email:Joi.string(),
             DOB:Joi.string(),
             gender:Joi.string(),
-            phone:Joi.number(),
+            phone:Joi.string(),
         },
         params: {},
         query: {},

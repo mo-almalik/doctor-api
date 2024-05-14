@@ -11,7 +11,7 @@ const router = Router()
 router.get("/account",authenticate,authorize(Role.USER),userInfo)
 router.delete("/delete",authenticate,authorize(Role.USER),deleteAccountUser)
 router.get("/appointments",authenticate,authorize(Role.USER),getMyAppointment)
-router.put("/update",authenticate,authorize(Role.USER),validate(updateSchema),updateUser)
+router.patch("/update",authenticate,authorize(Role.USER),updateUser)
 router.put("/appointment/:id",authenticate,authorize(Role.USER),validate(AppointmentCanceledSchema),canceledMyAppointment)
 
 export default router
